@@ -1,16 +1,18 @@
-import {FC, memo} from 'react';
+import { FC, memo } from 'react';
+
+import './error-block-style.scss';
 
 interface IErrorBlock {
   error: String
 }
 
-const ErrorBlock: FC<IErrorBlock> = ({error}) => {
+const ErrorBlock: FC<IErrorBlock> = ({ error }) => {
   if (!error) {
     return null;
   }
 
   return (
-    <div>
+    <div className="error-block">
       {error}
     </div>
   )
