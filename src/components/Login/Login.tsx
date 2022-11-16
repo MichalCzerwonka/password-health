@@ -6,16 +6,19 @@ import ErrorBlock from '../ErrorBlock/ErrorBlock';
 
 import './login-style.scss';
 import { Errors } from "~/constants/errors";
+import Loader from "~/components/Loader/Loader";
 
 const Login = () => {
   const { push } = useHistory();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string>();
 
   const handleSubmit = async (event: SyntheticEvent<HTMLFormElement>) => {
     event.preventDefault();
     setErrorMessage(null);
+    setIsLoading(true)
 
     try {
       await login(username, password);
@@ -23,11 +26,14 @@ const Login = () => {
     } catch (error) {
       setErrorMessage(Errors.IncorrectLogin);
     }
+    setIsLoading(false)
   };
 
   return (
     <div className="login-page">
+
       <form className="login-form" onSubmit={handleSubmit}>
+        {isLoading && <Loader />}
         <h1 className="text-center">
           Password Health
         </h1>
@@ -46,7 +52,7 @@ const Login = () => {
           className="input mt-24px"
         />
         <ErrorBlock error={errorMessage} />
-        <button type="submit" className="button mt-24px">
+        <button type="submit" className="button mt-24px" disabled={isLoading}>
           Login
         </button>
       </form>
