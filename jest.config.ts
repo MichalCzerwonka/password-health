@@ -10,6 +10,7 @@ const config: Config.InitialOptions = {
       isolatedModules: true,
     },
   },
+  resolver: "jest-webpack-resolver"
 };
 
 export default config;
