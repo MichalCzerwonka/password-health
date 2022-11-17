@@ -1,4 +1,4 @@
-import { IItem } from '../../services/getUserItems';
+import { IItem } from "~/services/getUserItems";
 import itemHasOldPassword from "../itemHasOldPassword";
 import { subDays, subMilliseconds } from "date-fns";
 

@@ -19,5 +19,7 @@ export const API = async (...args) => {
     logout();
   }
 
-  return response.json();
+  return response.json().catch(() => {
+    return {};
+  });
 };

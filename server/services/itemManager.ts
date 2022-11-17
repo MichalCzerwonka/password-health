@@ -1,14 +1,14 @@
 import { passwords } from '../data';
 
-let items = [];
+const items = new Map();
 
 export const updateItem = (item) => {
-  items.push(item);
+  items.set(item.id, item);
 };
 
 export const getItems = () => {
   return passwords.map((passwordItem) => {
-    const updatedItem = items.find(({ id }) => id === passwordItem.id);
+    const updatedItem = items.get(passwordItem.id);
 
     return {
       ...(updatedItem || passwordItem),
