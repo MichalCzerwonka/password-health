@@ -1,7 +1,7 @@
 import { render, screen } from "~/jest/testUtils";
 import List from "~/components/PasswordHealth/components/List/List";
 import { IItem } from "~/services/getUserItems";
-import { ITEMS_MOCK, SINGLE_ITEM } from "~/components/__tests__/__mocks__/items";
+import { ITEMS_MOCK, SINGLE_ITEM } from "~/components/__mocks__/items";
 import userEvent from "@testing-library/user-event";
 import updateItem from "~/services/updateItem";
 
