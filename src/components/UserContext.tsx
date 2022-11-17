@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import { API } from '~/constants';
 import getUrl from '~/utils/getUrl';
+import { fetchExtended } from "~/utils/fetch";
 
 interface IUser {
   updateUser: () => void;
@@ -13,8 +14,10 @@ interface IUser {
 }
 
 const UserContext = createContext<IUser>({
-  updateUser: () => {},
-  deleteData: () => {},
+  updateUser: () => {
+  },
+  deleteData: () => {
+  },
   errorMessage: null,
   isLoading: true,
   username: null,
@@ -36,7 +39,7 @@ export const UserContextProvider = ({ children }) => {
     setIsLoading(true);
 
     try {
-      const response = await fetch(getUrl(API.User), {
+      const response = await fetchExtended(getUrl(API.User), {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         }
@@ -63,7 +66,7 @@ export const UserContextProvider = ({ children }) => {
   };
 
   useEffect(() => {
-   updateUser();
+    updateUser();
   }, []);
 
   const value = {

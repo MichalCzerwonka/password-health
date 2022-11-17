@@ -1,5 +1,6 @@
-import {API} from '~/constants';
+import { API } from '~/constants';
 import getUrl from '../utils/getUrl';
+import { fetchExtended } from "~/utils/fetch";
 
 const login = async (username: string, password: string) => {
   const url = getUrl(API.Login, {
@@ -7,7 +8,7 @@ const login = async (username: string, password: string) => {
     password,
   });
 
-  const response = await fetch(url);
+  const response = await fetchExtended(url);
   const data = await response.json();
   const { token } = data;
 
