@@ -1,5 +1,5 @@
 import qs from 'query-string';
-import { URL } from '../constants';
+import { URL } from "~/constants";
 
 const getUrl = (endpoint: URL, params?: Record<string, any>) => {
 
