@@ -10,10 +10,10 @@ interface IList {
 }
 
 const List: FC<IList> = ({ items }) => (
-  <ul className="list">
+  <ul className="list" data-testid="list">
     {
       items.map((item) => (
-        <li className="item" key={item.id}>
+        <li className="item" key={item.id} data-testid="list-item">
           <ItemIcon title={item.title} />
           <div>
             <div className="title">

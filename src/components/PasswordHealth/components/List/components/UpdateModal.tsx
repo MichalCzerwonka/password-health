@@ -19,19 +19,18 @@ const UpdateModal: FC<IUpdateModal> = ({ item }) => {
   }
 
   const handleUpdate = async () => {
-    if (newPass.length > 0) {
-      await updateItem({
-        ...item,
-        password: newPass,
-      })
-      await refetch();
-    }
+    await updateItem({
+      ...item,
+      password: newPass,
+    })
+    await refetch();
+
     closeModal();
   }
 
   return (
     <>
-      <button className="update" onClick={() => setShowModal(true)}>
+      <button className="update" onClick={() => setShowModal(true)} data-testid="update-modal-open">
         Update Password
       </button>
       <Modal
@@ -41,17 +40,28 @@ const UpdateModal: FC<IUpdateModal> = ({ item }) => {
         contentLabel="Example Modal"
         appElement={document.getElementById('app')}
       >
-        <h1>Update Password</h1>
+        <h1 data-testid="update-modal-title">Update Password</h1>
         <input
           placeholder="new password"
           className="input"
           value={newPass}
+          data-testid="update-modal-password"
           onChange={(event) => setNewPass(event.target.value)}
         />
         <div className="pt-12px text-center">
-          <button className="button" onClick={handleUpdate}>Change
+          <button
+            className="button"
+            onClick={handleUpdate}
+            data-testid="update-modal-submit"
+            disabled={newPass.length <= 0}
+          >
+            Change
           </button>
-          <button className="button ml-12px" onClick={closeModal}>
+          <button
+            className="button ml-12px"
+            onClick={closeModal}
+            data-testid="update-modal-cancel"
+          >
             Cancel
           </button>
         </div>
