@@ -24,8 +24,6 @@ const UpdateModal: FC<IUpdateModal> = ({ item }) => {
       password: newPass,
     })
     await refetch();
-
-    closeModal();
   }
 
   return (
