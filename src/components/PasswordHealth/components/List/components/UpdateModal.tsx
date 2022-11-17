@@ -19,11 +19,13 @@ const UpdateModal: FC<IUpdateModal> = ({ item }) => {
   }
 
   const handleUpdate = async () => {
-    await updateItem({
-      ...item,
-      password: newPass,
-    })
-    await refetch();
+    if (newPass.length > 0) {
+      await updateItem({
+        ...item,
+        password: newPass,
+      })
+      await refetch();
+    }
     closeModal();
   }
 
@@ -37,6 +39,7 @@ const UpdateModal: FC<IUpdateModal> = ({ item }) => {
         isOpen={showModal}
         onRequestClose={() => setShowModal(false)}
         contentLabel="Example Modal"
+        appElement={document.getElementById('app')}
       >
         <h1>Update Password</h1>
         <input
