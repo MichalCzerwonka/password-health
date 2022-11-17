@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useState } from 'react';
-import { API } from '~/constants';
+import { URL } from '~/constants';
 import getUrl from '~/utils/getUrl';
-import { fetchExtended } from "~/utils/fetch";
+import { API } from "~/utils/fetch";
 
 interface IUser {
   updateUser: () => void;
@@ -39,7 +39,7 @@ export const UserContextProvider = ({ children }) => {
     setIsLoading(true);
 
     try {
-      const response = await fetchExtended(getUrl(API.User), {
+      const response = await API(getUrl(URL.User), {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         }

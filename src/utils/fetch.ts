@@ -1,6 +1,6 @@
 import logout from "~/services/logout";
 
-export const fetchExtended = async (...args) => {
+export const API = async (...args) => {
   let [resource, config] = args;
 
   let response = await fetch(resource, config);
@@ -8,5 +8,6 @@ export const fetchExtended = async (...args) => {
   if (response.status === 401) {
     logout();
   }
+
   return response;
 };

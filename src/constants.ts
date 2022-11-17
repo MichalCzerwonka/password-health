@@ -7,7 +7,7 @@ export enum Routes {
   Root = '/',
 }
 
-export enum API {
+export enum URL {
   Logout = 'api/logout',
   Login = 'api/login',
   Items = 'api/items',

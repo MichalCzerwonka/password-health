@@ -1,6 +1,6 @@
-import { API } from "~/constants";
+import { URL } from "~/constants";
 import getUrl from "~/utils/getUrl";
-import { fetchExtended } from "~/utils/fetch";
+import { API } from "~/utils/fetch";
 
 export interface IItem {
   id: string;
@@ -11,11 +11,11 @@ export interface IItem {
 }
 
 const getUserItems = async (userId?: string): Promise<Array<IItem>> => {
-  const url = getUrl(API.Items, {
+  const url = getUrl(URL.Items, {
     userId,
   });
 
-  const response = await fetchExtended(url, {
+  const response = await API(url, {
     headers: {
       Authorization: `Bearer ${localStorage.getItem('token')}`,
     }

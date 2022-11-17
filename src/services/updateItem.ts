@@ -1,10 +1,10 @@
-import { API } from "~/constants";
+import { URL } from "~/constants";
 import getUrl from "~/utils/getUrl";
 import { IItem } from "./getUserItems";
-import { fetchExtended } from "~/utils/fetch";
+import { API } from "~/utils/fetch";
 
 const updateItem = (item: IItem) => (
-  fetchExtended(getUrl(API.Items), {
+  API(getUrl(URL.Items), {
     method: "POST",
     body: JSON.stringify(item),
     headers: {
