@@ -24,9 +24,9 @@ const Login = () => {
       await login(username, password);
       push(Routes.PasswordHealth);
     } catch (error) {
+      setIsLoading(false)
       setErrorMessage(Errors.IncorrectLogin);
     }
-    setIsLoading(false)
   };
 
   return (
