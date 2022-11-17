@@ -8,6 +8,7 @@ import { Routes } from './constants';
 import { UserContextProvider } from './components/UserContext';
 
 import './style/styles.scss';
+import { ItemsContextProvider } from "~/components/ItemsContext";
 
 const App = () => (
   <Router>
@@ -18,7 +19,13 @@ const App = () => (
       />
       <PrivateRoute
         path={Routes.PasswordHealth}
-        component={() => <UserContextProvider><PasswordHealth /></UserContextProvider>}
+        component={() =>
+          <UserContextProvider>
+            <ItemsContextProvider>
+              <PasswordHealth />
+            </ItemsContextProvider>
+          </UserContextProvider>
+        }
       />
       <PrivateRoute
         path={Routes.Root}

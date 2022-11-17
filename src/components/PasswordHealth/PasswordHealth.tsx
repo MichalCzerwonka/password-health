@@ -1,5 +1,4 @@
 import List from './components/List/List';
-import useItemsProvider from './useItemsProvider';
 import ErrorBlock from '../ErrorBlock/ErrorBlock';
 import Filter from './components/Filter/Filter';
 import LoadingScreen from '../LoadingScreen';
@@ -10,6 +9,7 @@ import itemHasWeakPassword from "~/utils/itemHasWeakPassword";
 import itemHasReusedPassword from "~/utils/itemHasReusedPassword";
 import { useUserContext } from '../UserContext';
 import itemHasOldPassword from "~/utils/itemHasOldPassword";
+import { useItemsContext } from "~/components/ItemsContext";
 
 const PasswordHealth = () => {
   const {
@@ -22,7 +22,7 @@ const PasswordHealth = () => {
     items,
     isLoading,
     errorMessage,
-  } = useItemsProvider();
+  } = useItemsContext();
 
   if (isLoading || userDataIsLoading) {
     return <LoadingScreen />
