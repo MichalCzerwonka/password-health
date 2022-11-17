@@ -31,8 +31,7 @@ const Login = () => {
 
   return (
     <div className="login-page">
-
-      <form className="login-form" onSubmit={handleSubmit}>
+      <form className="login-form" data-testid="login-form" onSubmit={handleSubmit}>
         {isLoading && <Loader />}
         <h1 className="text-center">
           Password Health
@@ -41,6 +40,7 @@ const Login = () => {
           value={username}
           onChange={(event) => setUsername(event.target.value)}
           placeholder="Username"
+          data-testid="login-form-username"
           type="text"
           className="input mt-52px"
         />
@@ -48,11 +48,17 @@ const Login = () => {
           value={password}
           onChange={(event) => setPassword(event.target.value)}
           placeholder="Password"
+          data-testid="login-form-password"
           type="password"
           className="input mt-24px"
         />
         <ErrorBlock error={errorMessage} />
-        <button type="submit" className="button mt-24px" disabled={isLoading}>
+        <button
+          type="submit"
+          className="button mt-24px"
+          data-testid="login-form-submit"
+          disabled={isLoading}
+        >
           Login
         </button>
       </form>
