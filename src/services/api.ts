@@ -16,7 +16,7 @@ export const API = async (...args) => {
   let response = await fetch(url, extendedConfig);
 
   if (response.status === 401) {
-    logout();
+    await logout();
   }
 
   return response.json().catch(() => {
