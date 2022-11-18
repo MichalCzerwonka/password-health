@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from 'react';
-import { API } from '~/constants';
-import getUrl from '~/utils/getUrl';
+import { URL } from '~/constants';
+import { API } from "~/services/api";
 
 interface IUser {
   updateUser: () => void;
@@ -13,8 +13,10 @@ interface IUser {
 }
 
 const UserContext = createContext<IUser>({
-  updateUser: () => {},
-  deleteData: () => {},
+  updateUser: () => {
+  },
+  deleteData: () => {
+  },
   errorMessage: null,
   isLoading: true,
   username: null,
@@ -36,13 +38,7 @@ export const UserContextProvider = ({ children }) => {
     setIsLoading(true);
 
     try {
-      const response = await fetch(getUrl(API.User), {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
-        }
-      });
-
-      const data = await response.json();
+      const data = await API(URL.User);
 
       setUsername(data?.username);
       setEmail(data?.email);
@@ -63,7 +59,7 @@ export const UserContextProvider = ({ children }) => {
   };
 
   useEffect(() => {
-   updateUser();
+    updateUser();
   }, []);
 
   const value = {

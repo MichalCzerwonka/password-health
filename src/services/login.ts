@@ -1,13 +1,16 @@
-import {API} from '~/constants';
+import { URL } from '~/constants';
 import getUrl from '../utils/getUrl';
 
 const login = async (username: string, password: string) => {
-  const url = getUrl(API.Login, {
-    username,
-    password,
-  });
+  const url = getUrl(URL.Login);
 
-  const response = await fetch(url);
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ username, password })
+  });
   const data = await response.json();
   const { token } = data;
 

@@ -1,13 +1,14 @@
-import {BrowserRouter as Router, Redirect, Switch} from 'react-router-dom';
+import { BrowserRouter as Router, Redirect, Switch } from 'react-router-dom';
 
 import Login from './components/Login/Login';
 import PasswordHealth from './components/PasswordHealth/PasswordHealth';
 import PrivateRoute from './components/PrivateRoute';
 import PublicRoute from './components/PublicRoute';
-import {Routes} from './constants';
+import { Routes } from './constants';
 import { UserContextProvider } from './components/UserContext';
 
 import './style/styles.scss';
+import { ItemsContextProvider } from "~/components/ItemsContext";
 
 const App = () => (
   <Router>
@@ -18,11 +19,17 @@ const App = () => (
       />
       <PrivateRoute
         path={Routes.PasswordHealth}
-        component={() => <UserContextProvider><PasswordHealth /></UserContextProvider>}
+        component={() =>
+          <UserContextProvider>
+            <ItemsContextProvider>
+              <PasswordHealth />
+            </ItemsContextProvider>
+          </UserContextProvider>
+        }
       />
       <PrivateRoute
         path={Routes.Root}
-        component={() => <Redirect to={Routes.PasswordHealth}/>}
+        component={() => <Redirect to={Routes.PasswordHealth} />}
       />
     </Switch>
   </Router>
